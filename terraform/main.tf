@@ -1,6 +1,6 @@
-data "cjc_buckets" "example" {}
+data "eggco_buckets" "example" {}
 
-resource "cjc_s3_bucket" "example" {
+resource "eggco_s3_bucket" "example" {
  buckets = [{
    name = "eggco-bucket-987654321"
    tags = "mybucket"
@@ -8,5 +8,5 @@ resource "cjc_s3_bucket" "example" {
 }
 
 output "all_buckets" {
- value = data.cjc_buckets.example
+ value = data.eggco_buckets.example
 }

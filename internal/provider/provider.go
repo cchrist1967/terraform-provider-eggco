@@ -17,35 +17,35 @@ import (
 )
 
 var (
-	_ provider.Provider = &cjcProvider{}
+	_ provider.Provider = &eggcoProvider{}
 )
 
 func New(version string) func() provider.Provider {
 	return func() provider.Provider {
-		return &cjcProvider{
+		return &eggcoProvider{
 			version: version,
 		}
 	}
 }
 
-// cjcProvider is the provider implementation.
-type cjcProvider struct {
+// eggcoProvider is the provider implementation.
+type eggcoProvider struct {
 	version string
 }
 
-// cjcProviderModel maps provider schema data to a Go type.
-type cjcProviderModel struct {
+// eggcoProviderModel maps provider schema data to a Go type.
+type eggcoProviderModel struct {
 	Region    types.String `tfsdk:"region"`
 	AccessKey types.String `tfsdk:"access_key"`
 	SecretKey types.String `tfsdk:"secret_key"`
 }
 
-func (p *cjcProvider) Metadata(_ context.Context, _ provider.MetadataRequest, resp *provider.MetadataResponse) {
-	resp.TypeName = "cjc"
+func (p *eggcoProvider) Metadata(_ context.Context, _ provider.MetadataRequest, resp *provider.MetadataResponse) {
+	resp.TypeName = "eggco"
 	resp.Version = p.version
 }
 
-func (p *cjcProvider) Schema(_ context.Context, _ provider.SchemaRequest, resp *provider.SchemaResponse) {
+func (p *eggcoProvider) Schema(_ context.Context, _ provider.SchemaRequest, resp *provider.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		Attributes: map[string]schema.Attribute{
 			"region": schema.StringAttribute{
@@ -62,10 +62,10 @@ func (p *cjcProvider) Schema(_ context.Context, _ provider.SchemaRequest, resp *
 	}
 }
 
-func (p *cjcProvider) Configure(ctx context.Context, req provider.ConfigureRequest, resp *provider.ConfigureResponse) {
+func (p *eggcoProvider) Configure(ctx context.Context, req provider.ConfigureRequest, resp *provider.ConfigureResponse) {
 
 	// Retrieve provider data from configuration
-	var config cjcProviderModel
+	var config eggcoProviderModel
 	diags := req.Config.Get(ctx, &config)
 	resp.Diagnostics.Append(diags...)
 	if resp.Diagnostics.HasError() {
@@ -154,14 +154,14 @@ func (p *cjcProvider) Configure(ctx context.Context, req provider.ConfigureReque
 }
 
 // DataSources defines the data sources implemented in the provider.
-func (p *cjcProvider) DataSources(_ context.Context) []func() datasource.DataSource {
+func (p *eggcoProvider) DataSources(_ context.Context) []func() datasource.DataSource {
 	return []func() datasource.DataSource{
 		NewBucketDataSource,
 	}
 }
 
 // Resources defines the resources implemented in the provider.
-func (p *cjcProvider) Resources(_ context.Context) []func() resource.Resource {
+func (p *eggcoProvider) Resources(_ context.Context) []func() resource.Resource {
 	return []func() resource.Resource{
 		NewOrderResource,
 	}

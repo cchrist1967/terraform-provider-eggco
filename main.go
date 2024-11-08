@@ -5,7 +5,7 @@ import (
 	"flag"
 	"log"
 
-	"terraform-provider-cjc/internal/provider"
+	"terraform-provider-eggcococo/internal/provider"
 
 	"github.com/hashicorp/terraform-plugin-framework/providerserver"
 )
@@ -21,7 +21,7 @@ func main() {
 	flag.Parse()
 
 	opts := providerserver.ServeOpts{
-		Address: "hashicorp.com/edu/cjc",
+		Address: "hashicorp.com/edu/eggco",
 		Debug:   debug,
 	}
 
