@@ -5,7 +5,7 @@ import (
 	"flag"
 	"log"
 
-	"terraform-provider-eggcococo/internal/provider"
+	"terraform-provider-eggco/internal/provider"
 
 	"github.com/hashicorp/terraform-plugin-framework/providerserver"
 )
