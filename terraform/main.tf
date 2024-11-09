@@ -2,7 +2,7 @@ data "eggco_buckets" "example" {}
 
 resource "eggco_s3_bucket" "example" {
  buckets = [{
-   name = "eggco-bucket-987654321"
+   name = "eggco-bucket-453627"
    tags = "mybucket"
  }]
 }
